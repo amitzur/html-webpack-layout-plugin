@@ -20,9 +20,7 @@ HtmlWebpackLayoutPlugin.prototype.apply = function (compiler) {
 HtmlWebpackLayoutPlugin.prototype.addLayout = function ( html, options ){
   if(options.layout){
       var replace = options.replace || 'content';
-      var layout = require(options.layout)(options);
-      var reg = new RegExp('{{'+ replace +'}}');
-      html = layout.replace(reg, html);
+      html = require(options.layout)(Object.assign({ [replace]: html }, options));
   }
 
   return html;
