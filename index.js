@@ -20,7 +20,7 @@ HtmlWebpackLayoutPlugin.prototype.apply = function (compiler) {
 HtmlWebpackLayoutPlugin.prototype.addLayout = function ( html, options ){
   if(options.layout){
       var replace = options.replace || 'content';
-      var layout = fs.readFileSync(options.layout, 'utf-8');
+      var layout = require(options.layout);
       var reg = new RegExp('{{'+ replace +'}}');
       html = layout.replace(reg, html);
   }
